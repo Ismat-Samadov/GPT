@@ -8,10 +8,12 @@ This repository contains an implementation of a GPT (Generative Pre-trained Tran
 ├── README.md
 ├── az_tokenizer.json        # Trained tokenizer for Azerbaijani text
 ├── az_wiki_data.json        # Collected Wikipedia data
+├── best_model.pt            # Saved state of the best trained model
 ├── collect_data.py          # Script for collecting Wikipedia articles
+├── generate.py              # Text generation script using the trained model
 ├── prepare_data.py          # Data preprocessing and tokenizer training
 ├── requirements.txt         # Project dependencies
-└── train.py                # GPT model training script
+└── train.py                 # GPT model training script
 ```
 
 ## Setup
@@ -87,13 +89,26 @@ The training script:
   - Block size: 128
   - Batch size: 4
 
+## Text Generation
+
+Generate text using the trained model:
+```bash
+python generate.py
+```
+The `generate.py` script:
+- Loads the trained model and tokenizer
+- Generates text based on a user-provided prompt
+- Implements sampling strategies such as nucleus sampling and temperature scaling
+
 ## Files Description
 
 - `collect_data.py`: Collects articles from Azerbaijani Wikipedia using categories like history, culture, literature, and geography
 - `prepare_data.py`: Preprocesses text and trains a BPE tokenizer
 - `train.py`: Contains GPT model implementation and training loop
+- `generate.py`: Generates text using the trained model and sampling strategies
 - `az_wiki_data.json`: Collected and preprocessed Wikipedia articles
 - `az_tokenizer.json`: Trained BPE tokenizer for Azerbaijani text
+- `best_model.pt`: Saved state of the best model during training
 
 ## Training Output
 
@@ -127,22 +142,7 @@ Common Issues:
 
 ## Future Improvements
 
-- [ ] Add text generation script
 - [ ] Implement model evaluation metrics
-- [ ] Add data augmentation
+- [ ] Add data augmentation techniques
 - [ ] Implement distributed training
 - [ ] Add model compression techniques
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## Acknowledgments
-
-- Thanks to OpenAI for the GPT architecture
-- Wikipedia for providing the training data
-- PyTorch team for the deep learning framework
