@@ -6,7 +6,7 @@ __pycache__/
 /wandb
 # C extensions
 *.so
-best_model.pt
+.DS_Store
 # Distribution / packaging
 .Python
 build/

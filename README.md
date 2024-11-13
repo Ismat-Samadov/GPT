@@ -12,13 +12,14 @@ This repository contains an implementation of a GPT (Generative Pre-trained Tran
 ├── collect_data.py          # Script for collecting Wikipedia articles
 ├── generate.py              # Text generation script using the trained model
 ├── prepare_data.py          # Data preprocessing and tokenizer training
+├── push_to_hf.py            # Script to upload the trained model to Hugging Face Model Hub
 ├── requirements.txt         # Project dependencies
 └── train.py                 # GPT model training script
 ```
 
 ## Setup
 
-1. Create and activate virtual environment:
+1. Create and activate a virtual environment:
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
@@ -32,7 +33,7 @@ For Mac with Apple Silicon (M1/M2):
 pip3 install --pre torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/nightly/cpu
 
 # Install other required packages
-pip install transformers wikipedia-api beautifulsoup4 requests
+pip install transformers wikipedia-api beautifulsoup4 requests huggingface_hub
 ```
 
 For other systems:
@@ -100,12 +101,24 @@ The `generate.py` script:
 - Generates text based on a user-provided prompt
 - Implements sampling strategies such as nucleus sampling and temperature scaling
 
+## Upload to Hugging Face Model Hub
+
+Upload your trained model to the Hugging Face Model Hub:
+```bash
+python push_to_hf.py
+```
+The `push_to_hf.py` script:
+- Authenticates with your Hugging Face account
+- Creates a new repository for your model (if needed)
+- Uploads the trained model, tokenizer, and any other relevant files
+
 ## Files Description
 
 - `collect_data.py`: Collects articles from Azerbaijani Wikipedia using categories like history, culture, literature, and geography
 - `prepare_data.py`: Preprocesses text and trains a BPE tokenizer
 - `train.py`: Contains GPT model implementation and training loop
 - `generate.py`: Generates text using the trained model and sampling strategies
+- `push_to_hf.py`: Script for uploading the trained model to Hugging Face's Model Hub
 - `az_wiki_data.json`: Collected and preprocessed Wikipedia articles
 - `az_tokenizer.json`: Trained BPE tokenizer for Azerbaijani text
 - `best_model.pt`: Saved state of the best model during training
